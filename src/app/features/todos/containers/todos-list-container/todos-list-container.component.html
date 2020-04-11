@@ -1,0 +1,11 @@
+<section class="mat-typography">
+  <h2>List Container</h2>
+</section>
+
+<h3>List of cards using Angular FlexLayout</h3>
+<section fxLayout="column" fxLayoutGap="16px">
+  <app-todo-card
+    *ngFor="let todo of todos$ | async; trackBy: trackByMethod"
+    [todo]="todo"
+  ></app-todo-card>
+</section>

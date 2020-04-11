@@ -1,0 +1,15 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav
+    class="mat-elevation-z6"
+    mode="side"
+    [opened]="sidenavExpanded$ | async"
+    ><app-sidenav></app-sidenav
+  ></mat-sidenav>
+  <mat-sidenav-content>
+    <app-toolbar></app-toolbar>
+    <app-progress-bar></app-progress-bar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

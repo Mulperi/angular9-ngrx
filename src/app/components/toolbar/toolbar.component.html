@@ -1,0 +1,27 @@
+<mat-toolbar color="primary" class="mat-elevation-z4">
+  <mat-toolbar-row>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div>
+        <button mat-icon-button (click)="onMenuButtonClick()">
+          <mat-icon
+            *ngIf="!(sideNavExpanded$ | async)"
+            class="icon__menu"
+            svgIcon="menu"
+            aria-hidden="false"
+            aria-label="Open side navigation"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="sideNavExpanded$ | async"
+            class="icon__menu"
+            svgIcon="menu-open"
+            aria-hidden="false"
+            aria-label="Close side navigation"
+          ></mat-icon>
+        </button>
+      </div>
+      <div>
+        Angular 9 + NgRx Demo
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

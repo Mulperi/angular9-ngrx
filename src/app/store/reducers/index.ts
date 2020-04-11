@@ -8,5 +8,5 @@ export interface AppState {
 }
 
 export const defaultReducers = {
-  [fromUi.uiFeatureKey]: fromUi.reducer,
+  ui: fromUi.reducer,
 };

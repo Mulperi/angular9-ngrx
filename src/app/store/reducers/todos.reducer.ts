@@ -9,7 +9,7 @@ export interface TodosState {
   errorMessage: string;
 }
 
-const initialState: TodosState = {
+export const initialState: TodosState = {
   entities: {},
   loading: false,
   deleting: false,
@@ -46,9 +46,7 @@ const todosReducer = createReducer(
     ...state,
     deleting: false,
     entities: Object.keys(state.entities)
-      .filter((filterId: string) => {
-        return parseInt(filterId, 10) !== id;
-      })
+      .filter((filterId: string) => +filterId !== id)
       .reduce(
         (previous, value) => ({
           ...previous,

@@ -14,8 +14,12 @@ import { appContainers } from './containers';
 import { appComponents } from './components';
 import * as fromContainers from './containers';
 import { defaultReducers } from './store/reducers';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3500 } },
+  ],
   declarations: [...appContainers, ...appComponents],
   imports: [
     BrowserModule,

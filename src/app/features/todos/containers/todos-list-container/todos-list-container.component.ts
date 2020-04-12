@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import * as TodosActions from 'src/app/store/actions/todos.actions';
 import * as fromTodos from 'src/app/store/selectors/todos.selectors';
 import { AppState } from 'src/app/store/reducers';
 import { Todo } from 'src/app/models/Todo.model';
@@ -17,5 +18,9 @@ export class TodosListContainerComponent {
 
   trackByMethod(index: number, todo: Todo) {
     return todo.id;
+  }
+
+  onRemove(id: number) {
+    this.store.dispatch(TodosActions.todosDelete({ id }));
   }
 }

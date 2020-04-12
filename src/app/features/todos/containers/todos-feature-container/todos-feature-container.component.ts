@@ -12,6 +12,6 @@ export class TodosFeatureContainerComponent implements OnInit {
   constructor(private store: Store<TodosState>) {}
 
   ngOnInit() {
-    this.store.dispatch(todosActions.get());
+    this.store.dispatch(todosActions.todosGet());
   }
 }

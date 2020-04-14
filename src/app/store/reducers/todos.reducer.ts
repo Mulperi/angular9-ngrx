@@ -25,13 +25,7 @@ const todosReducer = createReducer(
   on(TodosActions.todosGetSuccess, (state, { todos }) => ({
     ...state,
     loading: false,
-    entities: todos.reduce(
-      (previous: { [key: number]: Todo }, value: Todo) => ({
-        ...previous,
-        [value.id]: value,
-      }),
-      state.entities
-    ),
+    entities: todosAddMany(todos, state.entities),
   })),
   on(TodosActions.todosGetFailed, (state, { errorMessage }) => ({
     ...state,
@@ -45,15 +39,7 @@ const todosReducer = createReducer(
   on(TodosActions.todosDeleteSuccess, (state, { id }) => ({
     ...state,
     deleting: false,
-    entities: Object.keys(state.entities)
-      .filter((filterId: string) => +filterId !== id)
-      .reduce(
-        (previous, value) => ({
-          ...previous,
-          [value]: state.entities[value],
-        }),
-        {}
-      ),
+    entities: todosRemoveOne(id, state.entities),
   })),
   on(TodosActions.todosDeleteFailed, (state, { errorMessage }) => ({
     ...state,
@@ -61,6 +47,28 @@ const todosReducer = createReducer(
     errorMessage,
   }))
 );
+
+export function todosAddMany(todos: Todo[], entities: { [key: number]: Todo }) {
+  return todos.reduce(
+    (previous: { [key: number]: Todo }, value: Todo) => ({
+      ...previous,
+      [value.id]: value,
+    }),
+    entities
+  );
+}
+
+export function todosRemoveOne(id: number, entities: { [key: number]: Todo }) {
+  return Object.keys(entities)
+    .filter((filterId: string) => +filterId !== id)
+    .reduce(
+      (previous, value) => ({
+        ...previous,
+        [value]: entities[value],
+      }),
+      {}
+    );
+}
 
 export function reducer(state: TodosState | undefined, action: Action) {
   return todosReducer(state, action);
